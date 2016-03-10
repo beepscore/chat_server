@@ -11,6 +11,13 @@ https://www.raywenderlich.com/3932/networking-tutorial-for-ios-how-to-create-a-s
 
 # Results
 
+## Python
+The virtual environment runs Python 3.5.1
+
+## Twisted
+Twisted has been partially updated to work with Python 3.
+If thist tutorial doesn't work, might need to change to Python 2.x
+
 
 ## Appendix virtual environment venv
 
