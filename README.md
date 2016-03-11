@@ -18,6 +18,14 @@ The virtual environment runs Python 3.5.1
 Twisted has been partially updated to work with Python 3.
 If thist tutorial doesn't work, might need to change to Python 2.x
 
+### Start server
+Need to use sudo
+http://stackoverflow.com/questions/13889928/twisted-internet-error-cannotlistenerror-couldnt-listen-on-any80-errno-13
+
+    (venv) ➜  chat_server git:(master) ✗ sudo python chatserver.py
+    Password:
+    Iphone Chat server started
+
 
 ## Appendix virtual environment venv
 
@@ -63,3 +71,4 @@ Notice command prompt shows venv is active
 ### Deactivate virtual environment
 In shell run deactivate
     (venv) ➜  chat_server git:(master) ✗ deactivate
+
