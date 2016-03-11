@@ -10,7 +10,9 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((HOST, PORT))
 
 while 1 == 1:
-    data = raw_input('--> ')
+    # In Python 3 use input instead of Python 2 raw_input
+    # http://stackoverflow.com/questions/954834/how-do-i-use-raw-input-in-python-3-1
+    data = input('--> ')
     sock.send(data + "\n")
 
 # Receive data from the server and shut down
