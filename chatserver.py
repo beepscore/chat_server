@@ -3,6 +3,10 @@ from twisted.internet import reactor
 
 
 class IphoneChat(Protocol):
+    """
+    IphoneChat extends Twisted Protocol, contains methods to handle client connections.
+    """
+
     def connectionMade(self):
         #self.transport.write("""connected""")
         self.factory.clients.append(self)
@@ -12,10 +16,16 @@ class IphoneChat(Protocol):
         self.factory.clients.remove(self)
 
     def dataReceived(self, data):
-        # data is  b'iam:joe\r\n'
-        print("data is ", data)
-        # data.__class__ is  <class 'bytes'>
-        print("data.__class__ is ", data.__class__)
+        """
+        Decodes data bytes to string and parses into command and content
+
+        :param data: bytes e.g. b'iam:joe\r\n'
+        data format uses a colon as the separator
+        <command>:<content>
+        Decoded string e.g. 'iam:joe' or 'msg:hello there'
+        """
+        # print("data is ", data)
+        # print("data.__class__ is ", data.__class__)
 
         # convert bytes to string
         data_str = data.decode('utf-8')
@@ -38,6 +48,13 @@ class IphoneChat(Protocol):
                 c.message(msg)
 
     def message(self, message):
+        """
+        Send message to all connected clients
+
+        Appends newline \n to indicate end of message
+        :param message: string message to send
+        """
+
         message_with_newline = message + '\n'
         # transport.write needs a byte string, not a unicode string
         # https://twistedmatrix.com/trac/ticket/6422
@@ -48,6 +65,9 @@ class IphoneChat(Protocol):
 
 factory = Factory()
 factory.protocol = IphoneChat
+
+# clients model object stores each connected client.
+# Each client is an IphoneChat instance, and is assigned its own socket.
 factory.clients = []
 
 reactor.listenTCP(80, factory)
