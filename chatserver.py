@@ -12,8 +12,14 @@ class IphoneChat(Protocol):
         self.factory.clients.remove(self)
 
     def dataReceived(self, data):
-        #print("data is ", data)
-        a = data.split(':')
+        # data is  b'iam:joe\r\n'
+        print("data is ", data)
+        # data.__class__ is  <class 'bytes'>
+        print("data.__class__ is ", data.__class__)
+
+        # convert bytes to string
+        data_str = data.decode('utf-8')
+        a = data_str.split(':')
         if len(a) > 1:
             command = a[0]
             content = a[1]
@@ -32,7 +38,12 @@ class IphoneChat(Protocol):
                 c.message(msg)
 
     def message(self, message):
-        self.transport.write(message + '\n')
+        message_with_newline = message + '\n'
+        # transport.write needs a byte string, not a unicode string
+        # https://twistedmatrix.com/trac/ticket/6422
+        # convert string to bytes
+        message_bytes = message_with_newline.encode('utf-8')
+        self.transport.write(message_bytes)
 
 
 factory = Factory()
