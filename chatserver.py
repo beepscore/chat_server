@@ -6,13 +6,13 @@ class IphoneChat(Protocol):
     def connectionMade(self):
         #self.transport.write("""connected""")
         self.factory.clients.append(self)
-        print "clients are ", self.factory.clients
+        print("clients are ", self.factory.clients)
 
     def connectionLost(self, reason):
         self.factory.clients.remove(self)
 
     def dataReceived(self, data):
-        #print "data is ", data
+        #print("data is ", data)
         a = data.split(':')
         if len(a) > 1:
             command = a[0]
@@ -26,7 +26,7 @@ class IphoneChat(Protocol):
             elif command == "msg":
                 msg = self.name + ": " + content
 
-            print msg
+            print(msg)
 
             for c in self.factory.clients:
                 c.message(msg)
@@ -40,6 +40,6 @@ factory.protocol = IphoneChat
 factory.clients = []
 
 reactor.listenTCP(80, factory)
-print "Iphone Chat server started"
+print("Iphone Chat server started")
 reactor.run()
 
