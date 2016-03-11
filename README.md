@@ -26,6 +26,25 @@ http://stackoverflow.com/questions/13889928/twisted-internet-error-cannotlistene
     Password:
     Iphone Chat server started
 
+### Stop server
+https://twistedmatrix.com/documents/current/web/howto/using-twistedweb.html
+This didn't work, does it need numeric value of process id?
+
+    kill 'cat twistd.pid'
+
+Ctrl-c seems to work.
+
+### Use telnet to test server
+Open a second terminal window.
+
+    ➜  chat_server git:(master) ✗ telnet localhost 80
+    Trying ::1...
+    telnet: connect to address ::1: Connection refused
+    Trying 127.0.0.1...
+    Connected to localhost.
+    Escape character is '^]'.
+
+Connected to localhost shows telnet connected to twisted server.
 
 ## Appendix virtual environment venv
 
