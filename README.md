@@ -4,10 +4,16 @@
 Write Python server to work with iOS chat client app.
 
 # References
-Networking Tutorial for iOS: How To Create A Socket Based iPhone App and Server
+
+## Networking Tutorial for iOS: How To Create A Socket Based iPhone App and Server
 by Cesare Rocci 2011-06-28
-Includes Python server
+
+Includes Python chat_server and iOS ChatClient
+
 https://www.raywenderlich.com/3932/networking-tutorial-for-ios-how-to-create-a-socket-based-iphone-app-and-server
+
+## iOS client ChatClient
+https://github.com/beepscore/ChatClient
 
 # Results
 
@@ -16,10 +22,12 @@ The virtual environment runs Python 3.5.1
 
 ## Twisted
 Twisted has been partially updated to work with Python 3.
+
 If thist tutorial doesn't work, might need to change to Python 2.x
 
 ### Start server
 Need to use sudo
+
 http://stackoverflow.com/questions/13889928/twisted-internet-error-cannotlistenerror-couldnt-listen-on-any80-errno-13
 
     (venv) ➜  chat_server git:(master) ✗ sudo python chatserver.py
@@ -28,6 +36,7 @@ http://stackoverflow.com/questions/13889928/twisted-internet-error-cannotlistene
 
 ### Stop server
 https://twistedmatrix.com/documents/current/web/howto/using-twistedweb.html
+
 This didn't work, does it need numeric value of process id?
 
     kill 'cat twistd.pid'
